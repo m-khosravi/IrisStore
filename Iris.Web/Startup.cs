@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data.Entity;
+using Iris.DataLayer;
+using Iris.DataLayer.Migrations;
 using Iris.ServiceLayer.Contracts;
 using Iris.Web.DependencyResolution;
 using Microsoft.AspNet.Identity;
@@ -19,6 +22,8 @@ namespace Iris.Web
 
         private static void configureAuth(IAppBuilder app)
         {
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+
             IoC.Container.Configure(config =>
             {
                 config.For<IDataProtectionProvider>()

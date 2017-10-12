@@ -24,12 +24,13 @@ namespace Iris.ServiceLayer.Contracts
         Task<IList<ProductWidgetViewModel>> GetMostViewedProducts(int count);
         Task<IList<ProductWidgetViewModel>> GetPopularProducts(int count);
         Task<IList<decimal>> GetAvailableProductPrices();
-        Task<IList<ProductWidgetViewModel>> SearchProduct(SearchProductViewModel searchModel);
+        Task<ProductSearchPagedList> SearchProduct(SearchProductViewModel searchModel);
         Task<ProductPageViewModel> GetProductPage(int productId);
         Task UpdateViewNumber(int productId);
         Task SaveRating(int productId, double rating);
         Task<IList<LueneProduct>> GetAllForLuceneIndex();
         Task<IList<string>> GetProductImages(int productId);
+        Task<IList<ProductOrderViewModel>> GetProductsOrders(int[] productIds);
     }
 
     public class LueneProduct
@@ -43,5 +44,12 @@ namespace Iris.ServiceLayer.Contracts
         public string SlugUrl { get; set; }
         public string Category { get; set; }
     }
+
+    public class ProductSearchPagedList
+    {
+        public IList<ProductWidgetViewModel> Products { get; set; }
+        public int TotalCount { get; set; }
+    }
+
 }
 
